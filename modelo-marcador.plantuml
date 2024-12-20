@@ -1,55 +1,58 @@
 @startuml
 
-class Marcador
-class MarcadorSet
-class MarcadorJuego
-class MarcadorServicio
+class Scoreboard
+class ScoreboardSet
+class ScoreboardGame
+class ScoreboardService
 
-class PuntosSetJugador
-class PuntosSetJuadorVerde
-class PuntosSetJuadorRojo
-class PuntosJuegoJugador
-class PuntosJuegoJugadorVerde
-class PuntosJuegoJugadorRojo
+class SetPointsPlayer
+class SetPointsPlayerGreen
+class SetPointsPlayerRed
+class GamePointsPlayer
+class GamePointsPlayerGreen
+class GamePointsPlayerRed
 
-class PuntuacionJuego
-class P0
-class P15
-class P30
-class P40
-class PAV
+class GameScore
+class Score0
+class Score15
+class Score30
+class Score40
+class Advantage
 
-class Jugador
+class SetScore
+class SetScore1
+class SetScore7
 
-Marcador *--> "3-5" MarcadorSet
-MarcadorSet *--> "2" PuntosSetJugador
-PuntosSetJuadorVerde .up.|> PuntosSetJugador
-PuntosSetJuadorRojo .up.|> PuntosSetJugador
+class Player
 
-Marcador *--> MarcadorJuego
-MarcadorJuego *--> "2" PuntosJuegoJugador
-PuntosJuegoJugadorVerde .up.|> PuntosJuegoJugador
-PuntosJuegoJugadorRojo .up.|> PuntosJuegoJugador
+Scoreboard *--> "3-5" ScoreboardSet
+ScoreboardSet *--> "2" SetPointsPlayer
+SetPointsPlayerGreen -up-|> SetPointsPlayer
+SetPointsPlayerRed -up-|> SetPointsPlayer
 
-PuntosJuegoJugador o-down-> PuntuacionJuego
-P0 -up-|> PuntuacionJuego
-P15 -up-|> PuntuacionJuego
-P30 -up-|> PuntuacionJuego
-P40 -up-|> PuntuacionJuego
-PAV -up-|> PuntuacionJuego
+Scoreboard *--> ScoreboardGame
+ScoreboardGame *--> "2" GamePointsPlayer
+GamePointsPlayerGreen -up-|> GamePointsPlayer
+GamePointsPlayerRed -up-|> GamePointsPlayer
 
-PuntosSetJugador o-down-> PuntuacionSetJugador
-P1 -up-|> PuntuacionSetJugador
-P7 -up-|> PuntuacionSetJugador
-P1 .left. P7 : de 1 a 7
+GamePointsPlayer o-down-> GameScore
+Score0 -up-|> GameScore
+Score15 -up-|> GameScore
+Score30 -up-|> GameScore
+Score40 -up-|> GameScore
+Advantage -up-|> GameScore
 
+SetPointsPlayer o-down-> SetScore
+SetScore1 -up-|> SetScore
+SetScore7 -up-|> SetScore
+SetScore1 .left. SetScore7 : from 1 to 7
 
-Marcador *--> "2" MarcadorServicio
-MarcadorServicioVerde -up-|> MarcadorServicio
-MarcadorServicioRojo -up-|> MarcadorServicio
+Scoreboard *--> "2" ScoreboardService
+ScoreboardServiceGreen -up-|> ScoreboardService
+ScoreboardServiceRed -up-|> ScoreboardService
 
-Jugador *--> PuntosJuegoJugador
-Jugador *--> "3-5" PuntosSetJugador
-Jugador *--> MarcadorServicio
+Player *--> GamePointsPlayer
+Player *--> "3-5" SetPointsPlayer
+Player *--> ScoreboardService
 
 @enduml
