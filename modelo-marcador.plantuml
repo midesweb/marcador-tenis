@@ -1,0 +1,55 @@
+@startuml
+
+class Marcador
+class MarcadorSet
+class MarcadorJuego
+class MarcadorServicio
+
+class PuntosSetJugador
+class PuntosSetJuadorVerde
+class PuntosSetJuadorRojo
+class PuntosJuegoJugador
+class PuntosJuegoJugadorVerde
+class PuntosJuegoJugadorRojo
+
+class PuntuacionJuego
+class P0
+class P15
+class P30
+class P40
+class PAV
+
+class Jugador
+
+Marcador *--> "3-5" MarcadorSet
+MarcadorSet *--> "2" PuntosSetJugador
+PuntosSetJuadorVerde .up.|> PuntosSetJugador
+PuntosSetJuadorRojo .up.|> PuntosSetJugador
+
+Marcador *--> MarcadorJuego
+MarcadorJuego *--> "2" PuntosJuegoJugador
+PuntosJuegoJugadorVerde .up.|> PuntosJuegoJugador
+PuntosJuegoJugadorRojo .up.|> PuntosJuegoJugador
+
+PuntosJuegoJugador o-down-> PuntuacionJuego
+P0 -up-|> PuntuacionJuego
+P15 -up-|> PuntuacionJuego
+P30 -up-|> PuntuacionJuego
+P40 -up-|> PuntuacionJuego
+PAV -up-|> PuntuacionJuego
+
+PuntosSetJugador o-down-> PuntuacionSetJugador
+P1 -up-|> PuntuacionSetJugador
+P7 -up-|> PuntuacionSetJugador
+P1 .left. P7 : de 1 a 7
+
+
+Marcador *--> "2" MarcadorServicio
+MarcadorServicioVerde -up-|> MarcadorServicio
+MarcadorServicioRojo -up-|> MarcadorServicio
+
+Jugador *--> PuntosJuegoJugador
+Jugador *--> "3-5" PuntosSetJugador
+Jugador *--> MarcadorServicio
+
+@enduml
