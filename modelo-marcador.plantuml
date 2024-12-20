@@ -31,7 +31,7 @@ SetPointsPlayerGreen -up-|> SetPointsPlayer
 SetPointsPlayerRed -up-|> SetPointsPlayer
 
 Scoreboard *--> ScoreboardGame
-ScoreboardGame *--> "2" GamePointsPlayer
+ScoreboardGame o--> "2" GamePointsPlayer
 GamePointsPlayerGreen -up-|> GamePointsPlayer
 GamePointsPlayerRed -up-|> GamePointsPlayer
 
@@ -42,6 +42,8 @@ Score30 -up-|> GameScore
 Score40 -up-|> GameScore
 Advantage -up-|> GameScore
 
+ScoreboardGame o-down-> "2" GamePointsPlayerOnTieBreak
+
 SetPointsPlayer o-down-> SetScore
 SetScore1 -up-|> SetScore
 SetScore7 -up-|> SetScore
@@ -51,8 +53,9 @@ Scoreboard *--> "2" ScoreboardService
 ScoreboardServiceGreen -up-|> ScoreboardService
 ScoreboardServiceRed -up-|> ScoreboardService
 
-Player *--> GamePointsPlayer
+Player o--> GamePointsPlayer
 Player *--> "3-5" SetPointsPlayer
 Player *--> ScoreboardService
+Player o--> GamePointsPlayerOnTieBreak
 
 @enduml
