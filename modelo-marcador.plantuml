@@ -26,6 +26,7 @@ class SetScore7
 class Player
 
 Scoreboard *--> "3-5" ScoreboardSet
+Scoreboard *--> "2" Player
 ScoreboardSet *--> "2" SetPointsPlayer
 SetPointsPlayerGreen -up-|> SetPointsPlayer
 SetPointsPlayerRed -up-|> SetPointsPlayer
